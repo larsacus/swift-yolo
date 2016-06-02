@@ -57,7 +57,7 @@
 
 <p>Let's get this one out of the way since it's going to come up. When you create an IBOutlet from a storyboard or a xib, Xcode will create this gem:</p>
 
-<div class="highlight highlight-source-swift"><pre><span class="pl-k">@IBOutlet</span> <span class="pl-k">weak</span> <span class="pl-k">var</span> MyButton: UIButton<span class="pl-k">!</span></pre></div>
+<div class="highlight highlight-source-swift"><pre><span class="pl-k">@IBOutlet</span> <span class="pl-k">weak</span> <span class="pl-k">var</span> MyButton: UIButton❗️</pre></div>
 
 <p><g-emoji alias="warning" fallback-src="https://assets-cdn.github.com/images/icons/emoji/unicode/26a0.png">⚠️</g-emoji> This is as "safe" yolo as you are going to get as the storyboard unpacking system has more knowledge about the system it is building than the compiler does. If these variables are nil when you try and access them, there are only a few possibilities:</p>
 
@@ -71,11 +71,6 @@
 <h2>
 <a id="we-are-given-an-optional-from-somewhere" class="anchor" href="#we-are-given-an-optional-from-somewhere" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>We are given an optional from... somewhere</h2>
 
-<p>Someone (of course not you) has indicated that some variable is "optional" and you want to pass it into a function that requires a non-optional parameter.</p>
-
-<h3>
-<a id="-wrong" class="anchor" href="#-wrong" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><g-emoji alias="boom" fallback-src="https://assets-cdn.github.com/images/icons/emoji/unicode/1f4a5.png">💥</g-emoji> Wrong</h3>
-
 <div class="highlight highlight-source-swift"><pre><span class="pl-k">func</span> <span class="pl-en">completionCallback</span>(optionalObject: <span class="pl-c1">Any</span>?, error: <span class="pl-c1">ErrorType</span>?) {
     <span class="pl-k">guard</span> error <span class="pl-k">==</span> <span class="pl-c1">nil</span> <span class="pl-k">else</span> {
         <span class="pl-c">// handle the error</span>
@@ -83,8 +78,10 @@
     }
 
     <span class="pl-c">// do some processing</span>
-    <span class="pl-k">self</span><span class="pl-k">.</span>nonOptionalFunc(<span class="pl-k">optional</span><span class="pl-k">!</span>)
+    <span class="pl-k">self</span><span class="pl-k">.</span>nonOptionalFunc(<span class="pl-k">optional</span>❗️)
 }</pre></div>
+
+<p>Someone (of course not you) has indicated that some variable is "optional" and you want to pass it into a function that requires a non-optional parameter. Let's mitigate this by using <code>if let</code> and explicitly handling both logical branches:</p>
 
 <h3>
 <a id="-right" class="anchor" href="#-right" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><g-emoji alias="white_check_mark" fallback-src="https://assets-cdn.github.com/images/icons/emoji/unicode/2705.png">✅</g-emoji> Right</h3>
@@ -111,9 +108,9 @@
 <p><img src="https://raw.githubusercontent.com/larsacus/swiftyolo.com/gh-pages/yolo-1.png" alt="Many yolos"></p>
 
 <h3>
-<a id="-wrong-1" class="anchor" href="#-wrong-1" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><g-emoji alias="boom" fallback-src="https://assets-cdn.github.com/images/icons/emoji/unicode/1f4a5.png">💥</g-emoji> Wrong</h3>
+<a id="-wrong" class="anchor" href="#-wrong" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><g-emoji alias="boom" fallback-src="https://assets-cdn.github.com/images/icons/emoji/unicode/1f4a5.png">💥</g-emoji> Wrong</h3>
 
-<div class="highlight highlight-source-swift"><pre><span class="pl-k">let</span> width: CGFloat <span class="pl-k">=</span> <span class="pl-k">self</span><span class="pl-k">.</span>imageCache<span class="pl-k">.</span>imageForKey(imageKey)<span class="pl-k">!.</span>size<span class="pl-k">.</span>width</pre></div>
+<div class="highlight highlight-source-swift"><pre><span class="pl-k">let</span> width: CGFloat <span class="pl-k">=</span> <span class="pl-k">self</span><span class="pl-k">.</span>imageCache<span class="pl-k">.</span>imageForKey(imageKey)❗️<span class="pl-k">.</span>size<span class="pl-k">.</span>width</pre></div>
 
 <h3>
 <a id="right" class="anchor" href="#right" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Right</h3>
@@ -144,11 +141,11 @@
 <p>When defining storage properties using weak storage, you should <em>never</em>* yolo these properties. <code>weak</code> storage are auto-zeroing properties that can become nil at any time when their owners release them.</p>
 
 <h3>
-<a id="-wrong-2" class="anchor" href="#-wrong-2" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><g-emoji alias="boom" fallback-src="https://assets-cdn.github.com/images/icons/emoji/unicode/1f4a5.png">💥</g-emoji> Wrong</h3>
+<a id="-wrong-1" class="anchor" href="#-wrong-1" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><g-emoji alias="boom" fallback-src="https://assets-cdn.github.com/images/icons/emoji/unicode/1f4a5.png">💥</g-emoji> Wrong</h3>
 
 <p>So by defining this in your class:</p>
 
-<div class="highlight highlight-source-swift"><pre><span class="pl-k">weak</span> <span class="pl-k">var</span> delegate: UITableViewDelegate<span class="pl-k">!</span></pre></div>
+<div class="highlight highlight-source-swift"><pre><span class="pl-k">weak</span> <span class="pl-k">var</span> delegate: UITableViewDelegate❗️</pre></div>
 
 <p>You are entering into a contract with the compiler that you cannot in any way fulfill without intimate knowledge of the owner of <code>delegate</code>.</p>
 
@@ -168,9 +165,9 @@
 <p>Even if this is "temporary" code -- both you and I know this will make it into production. You're entering into a contract here where failures that result from this function choking will be met with an application crash.</p>
 
 <h3>
-<a id="-wrong-3" class="anchor" href="#-wrong-3" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><g-emoji alias="boom" fallback-src="https://assets-cdn.github.com/images/icons/emoji/unicode/1f4a5.png">💥</g-emoji> Wrong</h3>
+<a id="-wrong-2" class="anchor" href="#-wrong-2" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><g-emoji alias="boom" fallback-src="https://assets-cdn.github.com/images/icons/emoji/unicode/1f4a5.png">💥</g-emoji> Wrong</h3>
 
-<div class="highlight highlight-source-swift"><pre><span class="pl-k">try</span><span class="pl-k">!</span> errorThrowingProcessing(ofObject: obj)</pre></div>
+<div class="highlight highlight-source-swift"><pre><span class="pl-k">try</span>❗️ errorThrowingProcessing(ofObject: obj)</pre></div>
 
 <h3>
 <a id="-right-2" class="anchor" href="#-right-2" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><g-emoji alias="white_check_mark" fallback-src="https://assets-cdn.github.com/images/icons/emoji/unicode/2705.png">✅</g-emoji> Right</h3>
