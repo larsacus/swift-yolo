@@ -55,9 +55,11 @@
 <h2>
 <a id="storyboard-unpacking" class="anchor" href="#storyboard-unpacking" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Storyboard Unpacking</h2>
 
-<p>Let's get this one out of the way since it's going to come up. When you create an IBOutlet from a storyboard or a xib, Xcode will create this gem:</p>
+<p>Let's get this one out of the way since it's going to come up.</p>
 
 <div class="highlight highlight-source-swift"><pre><span class="pl-k">@IBOutlet</span> <span class="pl-k">weak</span> <span class="pl-k">var</span> MyButton: UIButton❗️</pre></div>
+
+<p>When you create an IBOutlet from a storyboard or a xib, Xcode will create this little gem.</p>
 
 <p><g-emoji alias="warning" fallback-src="https://assets-cdn.github.com/images/icons/emoji/unicode/26a0.png">⚠️</g-emoji> This is as "safe" yolo as you are going to get as the storyboard unpacking system has more knowledge about the system it is building than the compiler does. If these variables are nil when you try and access them, there are only a few possibilities:</p>
 
@@ -81,10 +83,9 @@
     <span class="pl-k">self</span><span class="pl-k">.</span>nonOptionalFunc(<span class="pl-k">optional</span>❗️)
 }</pre></div>
 
-<p>Someone (of course not you) has indicated that some variable is "optional" and you want to pass it into a function that requires a non-optional parameter. Let's mitigate this by using <code>if let</code> and explicitly handling both logical branches:</p>
+<p>Someone (of course not you) has indicated that some variable is "optional" and you want to pass it into a function that requires a non-optional parameter.</p>
 
-<h3>
-<a id="-right" class="anchor" href="#-right" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><g-emoji alias="white_check_mark" fallback-src="https://assets-cdn.github.com/images/icons/emoji/unicode/2705.png">✅</g-emoji> Right</h3>
+<p><g-emoji alias="white_check_mark" fallback-src="https://assets-cdn.github.com/images/icons/emoji/unicode/2705.png">✅</g-emoji> Let's mitigate this by using <code>if let</code> and explicitly handling both logical branches:</p>
 
 <div class="highlight highlight-source-swift"><pre><span class="pl-k">func</span> <span class="pl-en">completionCallback</span>(optionalObject: <span class="pl-c1">Any</span>?, error: <span class="pl-c1">ErrorType</span>?) {
     <span class="pl-k">guard</span> error <span class="pl-k">==</span> <span class="pl-c1">nil</span> <span class="pl-k">else</span> {
@@ -150,7 +151,7 @@
 <p>You are entering into a contract with the compiler that you cannot in any way fulfill without intimate knowledge of the owner of <code>delegate</code>.</p>
 
 <h3>
-<a id="-right-1" class="anchor" href="#-right-1" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><g-emoji alias="white_check_mark" fallback-src="https://assets-cdn.github.com/images/icons/emoji/unicode/2705.png">✅</g-emoji> Right</h3>
+<a id="-right" class="anchor" href="#-right" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><g-emoji alias="white_check_mark" fallback-src="https://assets-cdn.github.com/images/icons/emoji/unicode/2705.png">✅</g-emoji> Right</h3>
 
 <p>This is a no-yolo situation that should be handled correctly with optionals:</p>
 
@@ -170,7 +171,7 @@
 <div class="highlight highlight-source-swift"><pre><span class="pl-k">try</span>❗️ errorThrowingProcessing(ofObject: obj)</pre></div>
 
 <h3>
-<a id="-right-2" class="anchor" href="#-right-2" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><g-emoji alias="white_check_mark" fallback-src="https://assets-cdn.github.com/images/icons/emoji/unicode/2705.png">✅</g-emoji> Right</h3>
+<a id="-right-1" class="anchor" href="#-right-1" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><g-emoji alias="white_check_mark" fallback-src="https://assets-cdn.github.com/images/icons/emoji/unicode/2705.png">✅</g-emoji> Right</h3>
 
 <div class="highlight highlight-source-swift"><pre><span class="pl-k">do</span> {
     <span class="pl-k">try</span> errorThrowingProcessing(ofObject: obj)
