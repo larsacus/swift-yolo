@@ -24,31 +24,53 @@
 <h1>
 <a id="why-yolo" class="anchor" href="#why-yolo" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Why "Yolo"?</h1>
 
-<p>When an optional variable is force-unwrapped "unsafely", we are telling the compiler "Hey bro, don't worry about this variable -- I know better than you do. Yolo. ¯_(ツ)_/¯" You will get to know this line of code shortly because there is an excellent chance you will see it again in a crash report with the name <code>EXC_BREAKPOINT</code>.</p>
+<p>When an optional variable is force-unwrapped "unsafely", we are telling the compiler "Hey bro, don't worry about this variable -- I know better than you do. Yolo. ¯_(ツ)_/¯" This is the programming-equivalent of "here, hold my beer -- watch this". You will get to know this line of code shortly because there is an excellent chance you will see it again in a crash report with the name <code>EXC_BREAKPOINT</code>.</p>
 
 <h1>
-<a id="safe-yolo" class="anchor" href="#safe-yolo" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Safe Yolo</h1>
+<a id="type-of-yolo" class="anchor" href="#type-of-yolo" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Type of Yolo</h1>
+
+<h2>
+<a id="safe-yolo-️" class="anchor" href="#safe-yolo-%EF%B8%8F" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Safe Yolo <g-emoji alias="warning" fallback-src="https://assets-cdn.github.com/images/icons/emoji/unicode/26a0.png">⚠️</g-emoji>
+</h2>
+
+<p>"Safe" yolo is using force-unwrap in places where the only reason it should crash your application is because of a programming or "developer" error. It is a contractual agreement you are entering into with the compiler that you know what's up. A calculated risk.</p>
+
+<h2>
+<a id="unsafe-yolo-" class="anchor" href="#unsafe-yolo-" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Unsafe Yolo <g-emoji alias="boom" fallback-src="https://assets-cdn.github.com/images/icons/emoji/unicode/1f4a5.png">💥</g-emoji>
+</h2>
+
+<p>Unsafe yolo is force-unwrapping optionals because you "need a non-optional" or "this will never be nil". If it will "never be nil", then make it a non-optional -- it's an optional for a reason. Using yolo unsafely should be met with the assumption that when something goes wrong, the "expected behavior" is to crash. Good thing you know every single failure path in your application, because you've just opted the compiler out of caring about it.</p>
+
+<h2>
+<a id="mitigated-yolo-" class="anchor" href="#mitigated-yolo-" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Mitigated Yolo <g-emoji alias="white_check_mark" fallback-src="https://assets-cdn.github.com/images/icons/emoji/unicode/2705.png">✅</g-emoji>
+</h2>
+
+<p>Mitigated yolo is yolo that has been removed in favor of proper use of either formally optional/non-optional storage. This allows the compiler to completely fact-check your work automatically, at least for expectations around object initialization. Normally these cases require explicit error handling around "failure" cases when optionals are nil.</p>
+
+<h2>
+<a id="silent-yolo-" class="anchor" href="#silent-yolo-" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Silent Yolo <g-emoji alias="scream" fallback-src="https://assets-cdn.github.com/images/icons/emoji/unicode/1f631.png">😱</g-emoji>
+</h2>
+
+<p>Mitigated yolo cases in which a formal optional has been used, but your nil failure cases are left entirely un-handled.</p>
 
 <h1>
-<a id="unsafe-yolo" class="anchor" href="#unsafe-yolo" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Unsafe Yolo</h1>
-
-<h1>
-<a id="some-reasons-we-yolo" class="anchor" href="#some-reasons-we-yolo" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Some reasons we yolo</h1>
+<a id="some-examples-of-yolo" class="anchor" href="#some-examples-of-yolo" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Some Examples of Yolo</h1>
 
 <h2>
 <a id="storyboard-unpacking" class="anchor" href="#storyboard-unpacking" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Storyboard Unpacking</h2>
 
 <p>Let's get this one out of the way since it's going to come up. When you create an IBOutlet from a storyboard or a xib, Xcode will create this gem:</p>
 
-<pre lang="lang:swift"><code>@IBOutlet weak var MyButton: UIButton!
-</code></pre>
+<div class="highlight highlight-source-swift"><pre><span class="pl-k">@IBOutlet</span> <span class="pl-k">weak</span> <span class="pl-k">var</span> MyButton: UIButton<span class="pl-k">!</span></pre></div>
 
-<p>This is as "safe" yolo as you are going to get as the storyboard unpacking system has more knowledge about the system it is building than the compiler does. If these variables are nil when you try and access them, there are only a few possibilities:</p>
+<p><g-emoji alias="warning" fallback-src="https://assets-cdn.github.com/images/icons/emoji/unicode/26a0.png">⚠️</g-emoji> This is as "safe" yolo as you are going to get as the storyboard unpacking system has more knowledge about the system it is building than the compiler does. If these variables are nil when you try and access them, there are only a few possibilities:</p>
 
 <ol>
 <li>You are accessing them before <code>awakeFromNib</code> has been called</li>
 <li>You didn't connect that <code>IBOutlet</code> to your storyboard</li>
 </ol>
+
+<p>These are both <em>programmer errors</em> and <em>should</em> crash your application.</p>
 
 <h2>
 <a id="we-are-given-an-optional-from-somewhere" class="anchor" href="#we-are-given-an-optional-from-somewhere" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>We are given an optional from... somewhere</h2>
@@ -56,42 +78,118 @@
 <p>Someone (of course not you) has indicated that some variable is "optional" and you want to pass it into a function that requires a non-optional parameter.</p>
 
 <h3>
-<a id="wrong" class="anchor" href="#wrong" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Wrong</h3>
+<a id="wrong-" class="anchor" href="#wrong-" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Wrong <g-emoji alias="boom" fallback-src="https://assets-cdn.github.com/images/icons/emoji/unicode/1f4a5.png">💥</g-emoji>
+</h3>
 
-<pre lang="lang:swift"><code>func completionCallback(optionalObject: Any?, error: ErrorType?) {
-    guard error == nil else {
-        // handle the error
-        return
+<div class="highlight highlight-source-swift"><pre><span class="pl-k">func</span> <span class="pl-en">completionCallback</span>(optionalObject: <span class="pl-c1">Any</span>?, error: <span class="pl-c1">ErrorType</span>?) {
+    <span class="pl-k">guard</span> error <span class="pl-k">==</span> <span class="pl-c1">nil</span> <span class="pl-k">else</span> {
+        <span class="pl-c">// handle the error</span>
+        <span class="pl-k">return</span>
     }
 
-    // do some processing
-    self.nonOptionalFunc(optional!)
-}
-</code></pre>
+    <span class="pl-c">// do some processing</span>
+    <span class="pl-k">self</span><span class="pl-k">.</span>nonOptionalFunc(<span class="pl-k">optional</span><span class="pl-k">!</span>)
+}</pre></div>
+
+<h3>
+<a id="right-" class="anchor" href="#right-" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Right <g-emoji alias="white_check_mark" fallback-src="https://assets-cdn.github.com/images/icons/emoji/unicode/2705.png">✅</g-emoji>
+</h3>
+
+<div class="highlight highlight-source-swift"><pre><span class="pl-k">func</span> <span class="pl-en">completionCallback</span>(optionalObject: <span class="pl-c1">Any</span>?, error: <span class="pl-c1">ErrorType</span>?) {
+    <span class="pl-k">guard</span> error <span class="pl-k">==</span> <span class="pl-c1">nil</span> <span class="pl-k">else</span> {
+        <span class="pl-c">// handle the error</span>
+        <span class="pl-k">return</span>
+    }
+
+    <span class="pl-k">if</span> <span class="pl-k">let</span> unwrappedOptional <span class="pl-k">=</span> <span class="pl-k">optional</span> {
+        <span class="pl-c">// do some processing</span>
+        <span class="pl-k">self</span><span class="pl-k">.</span>nonOptionalFunc(unwrappedOptional)
+    } <span class="pl-k">else</span> {
+        <span class="pl-c">// explicitly handle this case since something clearly went wrong</span>
+    }
+}</pre></div>
+
+<h2>
+<a id="inline-optionals" class="anchor" href="#inline-optionals" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Inline optionals</h2>
+
+<h3>
+<a id="wrong--1" class="anchor" href="#wrong--1" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Wrong <g-emoji alias="boom" fallback-src="https://assets-cdn.github.com/images/icons/emoji/unicode/1f4a5.png">💥</g-emoji>
+</h3>
+
+<div class="highlight highlight-source-swift"><pre><span class="pl-k">let</span> width: CGFloat <span class="pl-k">=</span> <span class="pl-k">self</span><span class="pl-k">.</span>imageCache<span class="pl-k">.</span>imageForKey(imageKey)<span class="pl-k">!.</span>size<span class="pl-k">.</span>width</pre></div>
 
 <h3>
 <a id="right" class="anchor" href="#right" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Right</h3>
 
-<pre lang="lang:swift"><code>func completionCallback(optionalObject: Any?, error: ErrorType?) {
-    guard error == nil else {
-        // handle the error
-        return
-    }
+<p>Unfortunately, you're probably not going to like this one very much. Depending on how important or "required" the result of the work you are performing, you'll have to handle it in a couple of different ways:</p>
 
-    if let unwrappedOptional = optional {
-        // do some processing
-        self.nonOptionalFunc(unwrappedOptional)
-    } else {
-        // explicitly handle this case since something clearly went wrong
-    }
+<h4>
+<a id="explicitly-" class="anchor" href="#explicitly-" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Explicitly <g-emoji alias="white_check_mark" fallback-src="https://assets-cdn.github.com/images/icons/emoji/unicode/2705.png">✅</g-emoji>
+</h4>
+
+<div class="highlight highlight-source-swift"><pre><span class="pl-k">let</span> width: CGFloat
+<span class="pl-k">if</span> <span class="pl-k">let</span> cachedImage <span class="pl-k">=</span> <span class="pl-k">self</span><span class="pl-k">.</span>imageCache<span class="pl-k">.</span>imageForKey(imageKey) {
+    width <span class="pl-k">=</span> cachedImage<span class="pl-k">.</span>size<span class="pl-k">.</span>width
+} <span class="pl-k">else</span> {
+    <span class="pl-c">// Handle "failure" here</span>
+}</pre></div>
+
+<h4>
+<a id="silently----or-dont-care-" class="anchor" href="#silently----or-dont-care-" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Silently -- or, "don't care" <g-emoji alias="scream" fallback-src="https://assets-cdn.github.com/images/icons/emoji/unicode/1f631.png">😱</g-emoji>
+</h4>
+
+<div class="highlight highlight-source-swift"><pre><span class="pl-k">var</span> width: CGFloat <span class="pl-k">=</span> <span class="pl-c1">0</span><span class="pl-k">.</span><span class="pl-c1">0</span>
+<span class="pl-k">if</span> <span class="pl-k">let</span> cachedImage <span class="pl-k">=</span> <span class="pl-k">self</span><span class="pl-k">.</span>imageCache<span class="pl-k">.</span>imageForKey(imageKey) {
+    width <span class="pl-k">=</span> cachedImage<span class="pl-k">.</span>size<span class="pl-k">.</span>width
+}</pre></div>
+
+<h2>
+<a id="weak-storage" class="anchor" href="#weak-storage" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Weak Storage</h2>
+
+<p>When defining storage properties using weak storage, you should <em>never</em>* yolo these properties. <code>weak</code> storage are auto-zeroing properties that can become nil at any time when their owners release them.</p>
+
+<h3>
+<a id="wrong--2" class="anchor" href="#wrong--2" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Wrong <g-emoji alias="boom" fallback-src="https://assets-cdn.github.com/images/icons/emoji/unicode/1f4a5.png">💥</g-emoji>
+</h3>
+
+<p>So by defining this in your class:</p>
+
+<div class="highlight highlight-source-swift"><pre><span class="pl-k">weak</span> <span class="pl-k">var</span> delegate: UITableViewDelegate<span class="pl-k">!</span></pre></div>
+
+<p>You are entering into a contract with the compiler that you cannot in any way fulfill without intimate knowledge of the owner of <code>delegate</code>.</p>
+
+<h3>
+<a id="right--1" class="anchor" href="#right--1" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Right <g-emoji alias="white_check_mark" fallback-src="https://assets-cdn.github.com/images/icons/emoji/unicode/2705.png">✅</g-emoji>
+</h3>
+
+<p>This is a no-yolo situation that should be handled correctly with optionals:</p>
+
+<div class="highlight highlight-source-swift"><pre><span class="pl-k">weak</span> <span class="pl-k">var</span> delegate: UITableViewDelegate?</pre></div>
+
+<h2>
+<a id="type-casting" class="anchor" href="#type-casting" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Type Casting</h2>
+
+<h2>
+<a id="throwing-errors" class="anchor" href="#throwing-errors" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Throwing Errors</h2>
+
+<p>Even if this is "temporary" code -- both you and I know this will make it into production. You're entering into a contract here where failures that result from this function choking will be met with an application crash.</p>
+
+<h3>
+<a id="wrong--3" class="anchor" href="#wrong--3" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Wrong <g-emoji alias="boom" fallback-src="https://assets-cdn.github.com/images/icons/emoji/unicode/1f4a5.png">💥</g-emoji>
+</h3>
+
+<div class="highlight highlight-source-swift"><pre><span class="pl-k">try</span><span class="pl-k">!</span> errorThrowingProcessing(ofObject: obj)</pre></div>
+
+<h3>
+<a id="right--2" class="anchor" href="#right--2" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Right <g-emoji alias="white_check_mark" fallback-src="https://assets-cdn.github.com/images/icons/emoji/unicode/2705.png">✅</g-emoji>
+</h3>
+
+<div class="highlight highlight-source-swift"><pre><span class="pl-k">do</span> {
+    <span class="pl-k">try</span> errorThrowingProcessing(ofObject: obj)
 }
-</code></pre>
-
-<h2>
-<a id="singletons" class="anchor" href="#singletons" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Singletons</h2>
-
-<h2>
-<a id="inline-optionals" class="anchor" href="#inline-optionals" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Inline optionals</h2>
+<span class="pl-k">catch</span> {
+    <span class="pl-c">// Handle error or rethrow -- it was thrown for a reason</span>
+}</pre></div>
 
       <footer class="site-footer">
         <span class="site-footer-owner"><a href="https://github.com/larsacus/swiftyolo.com">Swift&#39;s Yolo! Operator</a> is maintained by <a href="https://github.com/larsacus">larsacus</a>.</span>
