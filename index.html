@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="UTF-8">
+    <title>Swift&#39;s Yolo! Operator by larsacus</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="stylesheets/normalize.css" media="screen">
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="stylesheets/github-light.css" media="screen">
+  </head>
+  <body>
+    <section class="page-header">
+      <h1 class="project-name">Swift&#39;s Yolo! Operator</h1>
+      <h2 class="project-tagline">Be safe.</h2>
+      <a href="https://github.com/larsacus/swiftyolo.com" class="btn">View on GitHub</a>
+      <a href="https://github.com/larsacus/swiftyolo.com/zipball/master" class="btn">Download .zip</a>
+      <a href="https://github.com/larsacus/swiftyolo.com/tarball/master" class="btn">Download .tar.gz</a>
+    </section>
+
+    <section class="main-content">
+      <p>What is Swift's Yolo! operator? Simply put, this is the bang <code>!</code> operator used to force-unwrap optionals. We've all done it -- don't lie. When practicing safe yolo, the Yolo! operator can be a fun, healthy way to write code. So are you practicing safe yolo?</p>
+
+<h1>
+<a id="why-yolo" class="anchor" href="#why-yolo" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Why "Yolo"?</h1>
+
+<p>When an optional variable is force-unwrapped "unsafely", we are telling the compiler "Hey bro, don't worry about this variable -- I know better than you do. Yolo. ¯_(ツ)_/¯" You will get to know this line of code shortly because there is an excellent chance you will see it again in a crash report with the name <code>EXC_BREAKPOINT</code>.</p>
+
+<h1>
+<a id="safe-yolo" class="anchor" href="#safe-yolo" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Safe Yolo</h1>
+
+<h1>
+<a id="unsafe-yolo" class="anchor" href="#unsafe-yolo" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Unsafe Yolo</h1>
+
+<h1>
+<a id="some-reasons-we-yolo" class="anchor" href="#some-reasons-we-yolo" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Some reasons we yolo</h1>
+
+<h2>
+<a id="storyboard-unpacking" class="anchor" href="#storyboard-unpacking" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Storyboard Unpacking</h2>
+
+<p>Let's get this one out of the way since it's going to come up. When you create an IBOutlet from a storyboard or a xib, Xcode will create this gem:</p>
+
+<pre lang="lang:swift"><code>@IBOutlet weak var MyButton: UIButton!
+</code></pre>
+
+<p>This is as "safe" yolo as you are going to get as the storyboard unpacking system has more knowledge about the system it is building than the compiler does. If these variables are nil when you try and access them, there are only a few possibilities:</p>
+
+<ol>
+<li>You are accessing them before <code>awakeFromNib</code> has been called</li>
+<li>You didn't connect that <code>IBOutlet</code> to your storyboard</li>
+</ol>
+
+<h2>
+<a id="we-are-given-an-optional-from-somewhere" class="anchor" href="#we-are-given-an-optional-from-somewhere" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>We are given an optional from... somewhere</h2>
+
+<p>Someone (of course not you) has indicated that some variable is "optional" and you want to pass it into a function that requires a non-optional parameter.</p>
+
+<h3>
+<a id="wrong" class="anchor" href="#wrong" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Wrong</h3>
+
+<pre lang="lang:swift"><code>func completionCallback(optionalObject: Any?, error: ErrorType?) {
+    guard error == nil else {
+        // handle the error
+        return
+    }
+
+    // do some processing
+    self.nonOptionalFunc(optional!)
+}
+</code></pre>
+
+<h3>
+<a id="right" class="anchor" href="#right" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Right</h3>
+
+<pre lang="lang:swift"><code>func completionCallback(optionalObject: Any?, error: ErrorType?) {
+    guard error == nil else {
+        // handle the error
+        return
+    }
+
+    if let unwrappedOptional = optional {
+        // do some processing
+        self.nonOptionalFunc(unwrappedOptional)
+    } else {
+        // explicitly handle this case since something clearly went wrong
+    }
+}
+</code></pre>
+
+<h2>
+<a id="singletons" class="anchor" href="#singletons" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Singletons</h2>
+
+<h2>
+<a id="inline-optionals" class="anchor" href="#inline-optionals" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Inline optionals</h2>
+
+      <footer class="site-footer">
+        <span class="site-footer-owner"><a href="https://github.com/larsacus/swiftyolo.com">Swift&#39;s Yolo! Operator</a> is maintained by <a href="https://github.com/larsacus">larsacus</a>.</span>
+
+        <span class="site-footer-credits">This page was generated by <a href="https://pages.github.com">GitHub Pages</a> using the <a href="https://github.com/jasonlong/cayman-theme">Cayman theme</a> by <a href="https://twitter.com/jasonlong">Jason Long</a>.</span>
+      </footer>
+
+    </section>
+
+  
+  </body>
+</html>
