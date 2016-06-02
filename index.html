@@ -2,7 +2,7 @@
 <html lang="en-us">
   <head>
     <meta charset="UTF-8">
-    <title>Swift&#39;s Yolo! Operator by larsacus</title>
+    <title>Swift&#39;s Yolo❗️ Operator by larsacus</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" type="text/css" href="stylesheets/normalize.css" media="screen">
     <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
@@ -11,7 +11,7 @@
   </head>
   <body>
     <section class="page-header">
-      <h1 class="project-name">Swift&#39;s Yolo! Operator</h1>
+      <h1 class="project-name">Swift&#39;s Yolo❗️ Operator</h1>
       <h2 class="project-tagline">Be safe.</h2>
       <a href="https://github.com/larsacus/swiftyolo.com" class="btn">View on GitHub</a>
       <a href="https://github.com/larsacus/swiftyolo.com/zipball/master" class="btn">Download .zip</a>
@@ -19,12 +19,12 @@
     </section>
 
     <section class="main-content">
-      <p>What is Swift's Yolo! operator? Simply put, this is the bang <code>!</code> operator used to force-unwrap optionals. We've all done it -- don't lie. When practicing safe yolo, the Yolo! operator can be a fun, healthy way to write code. So are you practicing safe yolo?</p>
+      <p>What is Swift's Yolo! operator? Simply put, this is the bang <g-emoji alias="exclamation" fallback-src="https://assets-cdn.github.com/images/icons/emoji/unicode/2757.png">❗️</g-emoji> operator used to force-unwrap optionals. We've all done it -- don't lie. When practicing safe yolo, the Yolo<g-emoji alias="exclamation" fallback-src="https://assets-cdn.github.com/images/icons/emoji/unicode/2757.png">❗️</g-emoji> operator can be a fun, healthy way to write code. So are you practicing safe yolo?</p>
 
 <h1>
 <a id="why-yolo" class="anchor" href="#why-yolo" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Why "Yolo"?</h1>
 
-<p>When an optional variable is force-unwrapped "unsafely", we are telling the compiler "Hey bro, don't worry about this variable -- I know better than you do. Yolo. ¯_(ツ)_/¯" This is the programming-equivalent of "here, hold my beer -- watch this". You will get to know this line of code shortly because there is an excellent chance you will see it again in a crash report with the name <code>EXC_BREAKPOINT</code>.</p>
+<p>When an optional variable is force-unwrapped "unsafely", we are telling the compiler "Hey bro, don't worry about this variable -- I know better than you do. Yolo. ¯\<em>(ツ)</em>/¯" This is the programming equivalent of "here, hold my beer -- watch this". You will get to know this line of code shortly because there is an excellent chance you will see it again in a crash report with the name <code>EXC_BREAKPOINT</code>.</p>
 
 <h1>
 <a id="type-of-yolo" class="anchor" href="#type-of-yolo" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Type of Yolo</h1>
@@ -104,22 +104,15 @@
 <h2>
 <a id="inline-optionals" class="anchor" href="#inline-optionals" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Inline optionals</h2>
 
+<div class="highlight highlight-source-swift"><pre><span class="pl-k">let</span> width: CGFloat <span class="pl-k">=</span> <span class="pl-k">self</span><span class="pl-k">.</span>imageCache<span class="pl-k">.</span>imageForKey(imageKey)❗️<span class="pl-k">.</span>size<span class="pl-k">.</span>width</pre></div>
+
 <p>This is likely the most common occurrence of yolo in your codebase. <em>Something</em> will break here at some point in the future. Go on, do a quick audit of your codebase for <code>!.</code>. I'll wait.</p>
 
 <p><img src="https://raw.githubusercontent.com/larsacus/swiftyolo.com/gh-pages/yolo-1.png" alt="Many yolos"></p>
 
-<h3>
-<a id="-wrong" class="anchor" href="#-wrong" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><g-emoji alias="boom" fallback-src="https://assets-cdn.github.com/images/icons/emoji/unicode/1f4a5.png">💥</g-emoji> Wrong</h3>
-
-<div class="highlight highlight-source-swift"><pre><span class="pl-k">let</span> width: CGFloat <span class="pl-k">=</span> <span class="pl-k">self</span><span class="pl-k">.</span>imageCache<span class="pl-k">.</span>imageForKey(imageKey)❗️<span class="pl-k">.</span>size<span class="pl-k">.</span>width</pre></div>
-
-<h3>
-<a id="right" class="anchor" href="#right" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Right</h3>
-
 <p>Unfortunately, you're probably not going to like this one very much. Depending on how important or "required" the result of the work you are performing, you'll have to handle it in a couple of different ways:</p>
 
-<h4>
-<a id="-explicitly" class="anchor" href="#-explicitly" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><g-emoji alias="white_check_mark" fallback-src="https://assets-cdn.github.com/images/icons/emoji/unicode/2705.png">✅</g-emoji> Explicitly</h4>
+<p><g-emoji alias="white_check_mark" fallback-src="https://assets-cdn.github.com/images/icons/emoji/unicode/2705.png">✅</g-emoji> Explicitly handle the failure</p>
 
 <div class="highlight highlight-source-swift"><pre><span class="pl-k">let</span> width: CGFloat
 <span class="pl-k">if</span> <span class="pl-k">let</span> cachedImage <span class="pl-k">=</span> <span class="pl-k">self</span><span class="pl-k">.</span>imageCache<span class="pl-k">.</span>imageForKey(imageKey) {
@@ -128,8 +121,7 @@
     <span class="pl-c">// Handle "failure" here</span>
 }</pre></div>
 
-<h4>
-<a id="-silently----or-dont-care-yolo" class="anchor" href="#-silently----or-dont-care-yolo" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><g-emoji alias="scream" fallback-src="https://assets-cdn.github.com/images/icons/emoji/unicode/1f631.png">😱</g-emoji> Silently -- or, "don't care yolo"</h4>
+<p><g-emoji alias="scream" fallback-src="https://assets-cdn.github.com/images/icons/emoji/unicode/1f631.png">😱</g-emoji> Silently -- or, "don't care yolo"</p>
 
 <div class="highlight highlight-source-swift"><pre><span class="pl-k">var</span> width: CGFloat <span class="pl-k">=</span> <span class="pl-c1">0</span><span class="pl-k">.</span><span class="pl-c1">0</span>
 <span class="pl-k">if</span> <span class="pl-k">let</span> cachedImage <span class="pl-k">=</span> <span class="pl-k">self</span><span class="pl-k">.</span>imageCache<span class="pl-k">.</span>imageForKey(imageKey) {
@@ -139,21 +131,13 @@
 <h2>
 <a id="weak-storage" class="anchor" href="#weak-storage" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Weak Storage</h2>
 
-<p>When defining storage properties using weak storage, you should <em>never</em>* yolo these properties. <code>weak</code> storage are auto-zeroing properties that can become nil at any time when their owners release them.</p>
-
-<h3>
-<a id="-wrong-1" class="anchor" href="#-wrong-1" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><g-emoji alias="boom" fallback-src="https://assets-cdn.github.com/images/icons/emoji/unicode/1f4a5.png">💥</g-emoji> Wrong</h3>
-
-<p>So by defining this in your class:</p>
-
 <div class="highlight highlight-source-swift"><pre><span class="pl-k">weak</span> <span class="pl-k">var</span> delegate: UITableViewDelegate❗️</pre></div>
+
+<p>When defining storage properties using weak storage, you should <em>never</em>* yolo these properties. <code>weak</code> storage are auto-zeroing properties that can become nil at any time when their owners release them.</p>
 
 <p>You are entering into a contract with the compiler that you cannot in any way fulfill without intimate knowledge of the owner of <code>delegate</code>.</p>
 
-<h3>
-<a id="-right" class="anchor" href="#-right" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><g-emoji alias="white_check_mark" fallback-src="https://assets-cdn.github.com/images/icons/emoji/unicode/2705.png">✅</g-emoji> Right</h3>
-
-<p>This is a no-yolo situation that should be handled correctly with optionals:</p>
+<p><g-emoji alias="white_check_mark" fallback-src="https://assets-cdn.github.com/images/icons/emoji/unicode/2705.png">✅</g-emoji> This is a no-yolo situation that should be handled correctly with optionals:</p>
 
 <div class="highlight highlight-source-swift"><pre><span class="pl-k">weak</span> <span class="pl-k">var</span> delegate: UITableViewDelegate?</pre></div>
 
@@ -163,15 +147,11 @@
 <h2>
 <a id="throwing-errors" class="anchor" href="#throwing-errors" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Throwing Errors</h2>
 
-<p>Even if this is "temporary" code -- both you and I know this will make it into production. You're entering into a contract here where failures that result from this function choking will be met with an application crash.</p>
-
-<h3>
-<a id="-wrong-2" class="anchor" href="#-wrong-2" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><g-emoji alias="boom" fallback-src="https://assets-cdn.github.com/images/icons/emoji/unicode/1f4a5.png">💥</g-emoji> Wrong</h3>
-
 <div class="highlight highlight-source-swift"><pre><span class="pl-k">try</span>❗️ errorThrowingProcessing(ofObject: obj)</pre></div>
 
-<h3>
-<a id="-right-1" class="anchor" href="#-right-1" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><g-emoji alias="white_check_mark" fallback-src="https://assets-cdn.github.com/images/icons/emoji/unicode/2705.png">✅</g-emoji> Right</h3>
+<p>Even if this is "temporary" code -- both you and I know this will make it into production. You're entering into a contract here where failures that result from this function choking will be met with an application crash.</p>
+
+<p><g-emoji alias="white_check_mark" fallback-src="https://assets-cdn.github.com/images/icons/emoji/unicode/2705.png">✅</g-emoji> Properly handle the error flow</p>
 
 <div class="highlight highlight-source-swift"><pre><span class="pl-k">do</span> {
     <span class="pl-k">try</span> errorThrowingProcessing(ofObject: obj)
@@ -180,8 +160,12 @@
     <span class="pl-c">// Handle error or rethrow -- it was thrown for a reason</span>
 }</pre></div>
 
+<p><g-emoji alias="warning" fallback-src="https://assets-cdn.github.com/images/icons/emoji/unicode/26a0.png">⚠️</g-emoji> The safe yolo path here would be that the application <em>should</em> crash. Instances such as unpacking a resource from the bundle. If it doesn't exist, the bundle has in some way been damaged.</p>
+
+<div class="highlight highlight-source-swift"><pre><span class="pl-k">let</span> resource <span class="pl-k">=</span> <span class="pl-k">try</span>❗️ unpackCriticalBundledResourceWithName(resourceName)</pre></div>
+
       <footer class="site-footer">
-        <span class="site-footer-owner"><a href="https://github.com/larsacus/swiftyolo.com">Swift&#39;s Yolo! Operator</a> is maintained by <a href="https://github.com/larsacus">larsacus</a>.</span>
+        <span class="site-footer-owner"><a href="https://github.com/larsacus/swiftyolo.com">Swift&#39;s Yolo❗️ Operator</a> is maintained by <a href="https://github.com/larsacus">larsacus</a>.</span>
 
         <span class="site-footer-credits">This page was generated by <a href="https://pages.github.com">GitHub Pages</a> using the <a href="https://github.com/jasonlong/cayman-theme">Cayman theme</a> by <a href="https://twitter.com/jasonlong">Jason Long</a>.</span>
       </footer>
