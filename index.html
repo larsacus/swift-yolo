@@ -27,17 +27,18 @@
 <p>When an optional variable is force-unwrapped "unsafely", we are telling the compiler "Hey bro, don't worry about this variable -- I know better than you do. Yolo. ¯\<em>(ツ)</em>/¯" This is the programming equivalent of "here, hold my beer -- watch this". You will get to know this line of code shortly because there is an excellent chance you will see it again in a crash report with the name <code>EXC_BREAKPOINT</code>.</p>
 
 <h1>
-<a id="type-of-yolo" class="anchor" href="#type-of-yolo" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Type of Yolo</h1>
-
-<h2>
-<a id="️-safe-yolo" class="anchor" href="#%EF%B8%8F-safe-yolo" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><g-emoji alias="warning" fallback-src="https://assets-cdn.github.com/images/icons/emoji/unicode/26a0.png">⚠️</g-emoji> Safe Yolo</h2>
-
-<p>"Safe" yolo is using force-unwrap in places where the only reason it should crash your application is because of a programming or "developer" error. It is a contractual agreement you are entering into with the compiler that you know what's up. A calculated risk.</p>
+<a id="types-of-yolo️" class="anchor" href="#types-of-yolo%EF%B8%8F" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Types of Yolo<g-emoji alias="exclamation" fallback-src="https://assets-cdn.github.com/images/icons/emoji/unicode/2757.png">❗️</g-emoji>
+</h1>
 
 <h2>
 <a id="-unsafe-yolo" class="anchor" href="#-unsafe-yolo" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><g-emoji alias="boom" fallback-src="https://assets-cdn.github.com/images/icons/emoji/unicode/1f4a5.png">💥</g-emoji> Unsafe Yolo</h2>
 
 <p>Unsafe yolo is force-unwrapping optionals because you "need a non-optional" or "this will never be nil". If it will "never be nil", then make it a non-optional -- it's an optional for a reason. Using yolo unsafely should be met with the assumption that when something goes wrong, the "expected behavior" is to crash. Good thing you know every single failure path in your application, because you've just opted the compiler out of caring about it.</p>
+
+<h2>
+<a id="️-safe-yolo" class="anchor" href="#%EF%B8%8F-safe-yolo" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><g-emoji alias="warning" fallback-src="https://assets-cdn.github.com/images/icons/emoji/unicode/26a0.png">⚠️</g-emoji> Safe Yolo</h2>
+
+<p>"Safe" yolo is using force-unwrap in places where the only reason it should crash your application is because of a programming or "developer" error. It is a contractual agreement you are entering into with the compiler that you know what's up. A calculated risk.</p>
 
 <h2>
 <a id="-mitigated-yolo" class="anchor" href="#-mitigated-yolo" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><g-emoji alias="white_check_mark" fallback-src="https://assets-cdn.github.com/images/icons/emoji/unicode/2705.png">✅</g-emoji> Mitigated Yolo</h2>
@@ -50,7 +51,7 @@
 <p>Mitigated yolo cases in which a formal optional has been used, but your nil failure cases are left entirely un-handled.</p>
 
 <h1>
-<a id="some-examples-of-yolo" class="anchor" href="#some-examples-of-yolo" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Some Examples of Yolo</h1>
+<a id="yolo️-by-example" class="anchor" href="#yolo%EF%B8%8F-by-example" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Yolo<g-emoji alias="exclamation" fallback-src="https://assets-cdn.github.com/images/icons/emoji/unicode/2757.png">❗️</g-emoji> by Example</h1>
 
 <h2>
 <a id="storyboard-unpacking" class="anchor" href="#storyboard-unpacking" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Storyboard Unpacking</h2>
