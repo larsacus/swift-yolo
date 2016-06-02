@@ -30,26 +30,22 @@
 <a id="type-of-yolo" class="anchor" href="#type-of-yolo" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Type of Yolo</h1>
 
 <h2>
-<a id="safe-yolo-️" class="anchor" href="#safe-yolo-%EF%B8%8F" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Safe Yolo <g-emoji alias="warning" fallback-src="https://assets-cdn.github.com/images/icons/emoji/unicode/26a0.png">⚠️</g-emoji>
-</h2>
+<a id="️-safe-yolo" class="anchor" href="#%EF%B8%8F-safe-yolo" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><g-emoji alias="warning" fallback-src="https://assets-cdn.github.com/images/icons/emoji/unicode/26a0.png">⚠️</g-emoji> Safe Yolo</h2>
 
 <p>"Safe" yolo is using force-unwrap in places where the only reason it should crash your application is because of a programming or "developer" error. It is a contractual agreement you are entering into with the compiler that you know what's up. A calculated risk.</p>
 
 <h2>
-<a id="unsafe-yolo-" class="anchor" href="#unsafe-yolo-" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Unsafe Yolo <g-emoji alias="boom" fallback-src="https://assets-cdn.github.com/images/icons/emoji/unicode/1f4a5.png">💥</g-emoji>
-</h2>
+<a id="-unsafe-yolo" class="anchor" href="#-unsafe-yolo" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><g-emoji alias="boom" fallback-src="https://assets-cdn.github.com/images/icons/emoji/unicode/1f4a5.png">💥</g-emoji> Unsafe Yolo</h2>
 
 <p>Unsafe yolo is force-unwrapping optionals because you "need a non-optional" or "this will never be nil". If it will "never be nil", then make it a non-optional -- it's an optional for a reason. Using yolo unsafely should be met with the assumption that when something goes wrong, the "expected behavior" is to crash. Good thing you know every single failure path in your application, because you've just opted the compiler out of caring about it.</p>
 
 <h2>
-<a id="mitigated-yolo-" class="anchor" href="#mitigated-yolo-" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Mitigated Yolo <g-emoji alias="white_check_mark" fallback-src="https://assets-cdn.github.com/images/icons/emoji/unicode/2705.png">✅</g-emoji>
-</h2>
+<a id="-mitigated-yolo" class="anchor" href="#-mitigated-yolo" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><g-emoji alias="white_check_mark" fallback-src="https://assets-cdn.github.com/images/icons/emoji/unicode/2705.png">✅</g-emoji> Mitigated Yolo</h2>
 
 <p>Mitigated yolo is yolo that has been removed in favor of proper use of either formally optional/non-optional storage. This allows the compiler to completely fact-check your work automatically, at least for expectations around object initialization. Normally these cases require explicit error handling around "failure" cases when optionals are nil.</p>
 
 <h2>
-<a id="silent-yolo-" class="anchor" href="#silent-yolo-" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Silent Yolo <g-emoji alias="scream" fallback-src="https://assets-cdn.github.com/images/icons/emoji/unicode/1f631.png">😱</g-emoji>
-</h2>
+<a id="-silent-yolo" class="anchor" href="#-silent-yolo" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><g-emoji alias="scream" fallback-src="https://assets-cdn.github.com/images/icons/emoji/unicode/1f631.png">😱</g-emoji> Silent Yolo</h2>
 
 <p>Mitigated yolo cases in which a formal optional has been used, but your nil failure cases are left entirely un-handled.</p>
 
@@ -78,8 +74,7 @@
 <p>Someone (of course not you) has indicated that some variable is "optional" and you want to pass it into a function that requires a non-optional parameter.</p>
 
 <h3>
-<a id="wrong-" class="anchor" href="#wrong-" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Wrong <g-emoji alias="boom" fallback-src="https://assets-cdn.github.com/images/icons/emoji/unicode/1f4a5.png">💥</g-emoji>
-</h3>
+<a id="-wrong" class="anchor" href="#-wrong" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><g-emoji alias="boom" fallback-src="https://assets-cdn.github.com/images/icons/emoji/unicode/1f4a5.png">💥</g-emoji> Wrong</h3>
 
 <div class="highlight highlight-source-swift"><pre><span class="pl-k">func</span> <span class="pl-en">completionCallback</span>(optionalObject: <span class="pl-c1">Any</span>?, error: <span class="pl-c1">ErrorType</span>?) {
     <span class="pl-k">guard</span> error <span class="pl-k">==</span> <span class="pl-c1">nil</span> <span class="pl-k">else</span> {
@@ -92,8 +87,7 @@
 }</pre></div>
 
 <h3>
-<a id="right-" class="anchor" href="#right-" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Right <g-emoji alias="white_check_mark" fallback-src="https://assets-cdn.github.com/images/icons/emoji/unicode/2705.png">✅</g-emoji>
-</h3>
+<a id="-right" class="anchor" href="#-right" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><g-emoji alias="white_check_mark" fallback-src="https://assets-cdn.github.com/images/icons/emoji/unicode/2705.png">✅</g-emoji> Right</h3>
 
 <div class="highlight highlight-source-swift"><pre><span class="pl-k">func</span> <span class="pl-en">completionCallback</span>(optionalObject: <span class="pl-c1">Any</span>?, error: <span class="pl-c1">ErrorType</span>?) {
     <span class="pl-k">guard</span> error <span class="pl-k">==</span> <span class="pl-c1">nil</span> <span class="pl-k">else</span> {
@@ -113,8 +107,7 @@
 <a id="inline-optionals" class="anchor" href="#inline-optionals" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Inline optionals</h2>
 
 <h3>
-<a id="wrong--1" class="anchor" href="#wrong--1" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Wrong <g-emoji alias="boom" fallback-src="https://assets-cdn.github.com/images/icons/emoji/unicode/1f4a5.png">💥</g-emoji>
-</h3>
+<a id="-wrong-1" class="anchor" href="#-wrong-1" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><g-emoji alias="boom" fallback-src="https://assets-cdn.github.com/images/icons/emoji/unicode/1f4a5.png">💥</g-emoji> Wrong</h3>
 
 <div class="highlight highlight-source-swift"><pre><span class="pl-k">let</span> width: CGFloat <span class="pl-k">=</span> <span class="pl-k">self</span><span class="pl-k">.</span>imageCache<span class="pl-k">.</span>imageForKey(imageKey)<span class="pl-k">!.</span>size<span class="pl-k">.</span>width</pre></div>
 
@@ -124,8 +117,7 @@
 <p>Unfortunately, you're probably not going to like this one very much. Depending on how important or "required" the result of the work you are performing, you'll have to handle it in a couple of different ways:</p>
 
 <h4>
-<a id="explicitly-" class="anchor" href="#explicitly-" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Explicitly <g-emoji alias="white_check_mark" fallback-src="https://assets-cdn.github.com/images/icons/emoji/unicode/2705.png">✅</g-emoji>
-</h4>
+<a id="-explicitly" class="anchor" href="#-explicitly" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><g-emoji alias="white_check_mark" fallback-src="https://assets-cdn.github.com/images/icons/emoji/unicode/2705.png">✅</g-emoji> Explicitly</h4>
 
 <div class="highlight highlight-source-swift"><pre><span class="pl-k">let</span> width: CGFloat
 <span class="pl-k">if</span> <span class="pl-k">let</span> cachedImage <span class="pl-k">=</span> <span class="pl-k">self</span><span class="pl-k">.</span>imageCache<span class="pl-k">.</span>imageForKey(imageKey) {
@@ -135,8 +127,7 @@
 }</pre></div>
 
 <h4>
-<a id="silently----or-dont-care-" class="anchor" href="#silently----or-dont-care-" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Silently -- or, "don't care" <g-emoji alias="scream" fallback-src="https://assets-cdn.github.com/images/icons/emoji/unicode/1f631.png">😱</g-emoji>
-</h4>
+<a id="-silently----or-dont-care" class="anchor" href="#-silently----or-dont-care" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><g-emoji alias="scream" fallback-src="https://assets-cdn.github.com/images/icons/emoji/unicode/1f631.png">😱</g-emoji> Silently -- or, "don't care"</h4>
 
 <div class="highlight highlight-source-swift"><pre><span class="pl-k">var</span> width: CGFloat <span class="pl-k">=</span> <span class="pl-c1">0</span><span class="pl-k">.</span><span class="pl-c1">0</span>
 <span class="pl-k">if</span> <span class="pl-k">let</span> cachedImage <span class="pl-k">=</span> <span class="pl-k">self</span><span class="pl-k">.</span>imageCache<span class="pl-k">.</span>imageForKey(imageKey) {
@@ -149,8 +140,7 @@
 <p>When defining storage properties using weak storage, you should <em>never</em>* yolo these properties. <code>weak</code> storage are auto-zeroing properties that can become nil at any time when their owners release them.</p>
 
 <h3>
-<a id="wrong--2" class="anchor" href="#wrong--2" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Wrong <g-emoji alias="boom" fallback-src="https://assets-cdn.github.com/images/icons/emoji/unicode/1f4a5.png">💥</g-emoji>
-</h3>
+<a id="-wrong-2" class="anchor" href="#-wrong-2" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><g-emoji alias="boom" fallback-src="https://assets-cdn.github.com/images/icons/emoji/unicode/1f4a5.png">💥</g-emoji> Wrong</h3>
 
 <p>So by defining this in your class:</p>
 
@@ -159,8 +149,7 @@
 <p>You are entering into a contract with the compiler that you cannot in any way fulfill without intimate knowledge of the owner of <code>delegate</code>.</p>
 
 <h3>
-<a id="right--1" class="anchor" href="#right--1" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Right <g-emoji alias="white_check_mark" fallback-src="https://assets-cdn.github.com/images/icons/emoji/unicode/2705.png">✅</g-emoji>
-</h3>
+<a id="-right-1" class="anchor" href="#-right-1" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><g-emoji alias="white_check_mark" fallback-src="https://assets-cdn.github.com/images/icons/emoji/unicode/2705.png">✅</g-emoji> Right</h3>
 
 <p>This is a no-yolo situation that should be handled correctly with optionals:</p>
 
@@ -175,14 +164,12 @@
 <p>Even if this is "temporary" code -- both you and I know this will make it into production. You're entering into a contract here where failures that result from this function choking will be met with an application crash.</p>
 
 <h3>
-<a id="wrong--3" class="anchor" href="#wrong--3" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Wrong <g-emoji alias="boom" fallback-src="https://assets-cdn.github.com/images/icons/emoji/unicode/1f4a5.png">💥</g-emoji>
-</h3>
+<a id="-wrong-3" class="anchor" href="#-wrong-3" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><g-emoji alias="boom" fallback-src="https://assets-cdn.github.com/images/icons/emoji/unicode/1f4a5.png">💥</g-emoji> Wrong</h3>
 
 <div class="highlight highlight-source-swift"><pre><span class="pl-k">try</span><span class="pl-k">!</span> errorThrowingProcessing(ofObject: obj)</pre></div>
 
 <h3>
-<a id="right--2" class="anchor" href="#right--2" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Right <g-emoji alias="white_check_mark" fallback-src="https://assets-cdn.github.com/images/icons/emoji/unicode/2705.png">✅</g-emoji>
-</h3>
+<a id="-right-2" class="anchor" href="#-right-2" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><g-emoji alias="white_check_mark" fallback-src="https://assets-cdn.github.com/images/icons/emoji/unicode/2705.png">✅</g-emoji> Right</h3>
 
 <div class="highlight highlight-source-swift"><pre><span class="pl-k">do</span> {
     <span class="pl-k">try</span> errorThrowingProcessing(ofObject: obj)
