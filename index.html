@@ -72,7 +72,7 @@
 <p>These are both <em>programmer errors</em> and <em>should</em> crash your application.</p>
 
 <h2>
-<a id="we-are-given-an-optional-from-somewhere" class="anchor" href="#we-are-given-an-optional-from-somewhere" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>We are given an optional from... somewhere</h2>
+<a id="rogue-optionals" class="anchor" href="#rogue-optionals" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Rogue Optionals</h2>
 
 <div class="highlight highlight-source-swift"><pre><span class="pl-k">func</span> <span class="pl-en">completionCallback</span>(optionalObject: <span class="pl-c1">Any</span>?, error: <span class="pl-c1">ErrorType</span>?) {
     <span class="pl-k">guard</span> error <span class="pl-k">==</span> <span class="pl-c1">nil</span> <span class="pl-k">else</span> {
@@ -122,7 +122,7 @@
     <span class="pl-c">// Handle "failure" here</span>
 }</pre></div>
 
-<p><g-emoji alias="scream" fallback-src="https://assets-cdn.github.com/images/icons/emoji/unicode/1f631.png">😱</g-emoji> Silently -- or, "don't care yolo"</p>
+<p><g-emoji alias="scream" fallback-src="https://assets-cdn.github.com/images/icons/emoji/unicode/1f631.png">😱</g-emoji> Silently -- "don't care yolo"</p>
 
 <div class="highlight highlight-source-swift"><pre><span class="pl-k">var</span> width: CGFloat <span class="pl-k">=</span> <span class="pl-c1">0</span><span class="pl-k">.</span><span class="pl-c1">0</span>
 <span class="pl-k">if</span> <span class="pl-k">let</span> cachedImage <span class="pl-k">=</span> <span class="pl-k">self</span><span class="pl-k">.</span>imageCache<span class="pl-k">.</span>imageForKey(imageKey) {
@@ -144,6 +144,21 @@
 
 <h2>
 <a id="type-casting" class="anchor" href="#type-casting" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Type Casting</h2>
+
+<div class="highlight highlight-source-swift"><pre><span class="pl-k">let</span> superObject <span class="pl-k">=</span> (givenObject <span class="pl-k">as!</span> MyObject)</pre></div>
+
+<p><g-emoji alias="warning" fallback-src="https://assets-cdn.github.com/images/icons/emoji/unicode/26a0.png">⚠️</g-emoji> This pattern could qualify as an expected cautious-yolo and could be a programmer error depending on your requirements. If your object doesn't get cast correctly, we want it to crash. If you're already at this point, it will likely require much more code to completely obviate the yolo altogether.</p>
+
+<p><g-emoji alias="white_check_mark" fallback-src="https://assets-cdn.github.com/images/icons/emoji/unicode/2705.png">✅</g-emoji> The other option is to <code>if let</code> the type cast and handle the "failure" depending on your architecture and requirements.</p>
+
+<div class="highlight highlight-source-swift"><pre><span class="pl-k">if</span> <span class="pl-k">let</span> superObject <span class="pl-k">=</span> givenObject <span class="pl-k">as?</span> MyObject {
+    <span class="pl-c">// guaranteed superObject is MyObject and non-optional</span>
+}
+<span class="pl-k">else</span> <span class="pl-k">if</span> superObject <span class="pl-k">==</span> <span class="pl-c1">nil</span> {
+   <span class="pl-c">// superObject was nil -- but we didn't crash!</span>
+} <span class="pl-k">else</span> {
+    <span class="pl-c">// givenObject was non-nil , but failed a cast to MyObject -- handle failure depending on requirements</span>
+}</pre></div>
 
 <h2>
 <a id="throwing-errors" class="anchor" href="#throwing-errors" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Throwing Errors</h2>
