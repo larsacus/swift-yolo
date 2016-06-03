@@ -19,7 +19,7 @@
     </section>
 
     <section class="main-content">
-      <p>What is Swift's Yolo! operator? Simply put, this is the bang <g-emoji alias="exclamation" fallback-src="https://assets-cdn.github.com/images/icons/emoji/unicode/2757.png">❗️</g-emoji> operator used to force-unwrap optionals. We've all done it -- don't lie. When practicing safe yolo, the Yolo<g-emoji alias="exclamation" fallback-src="https://assets-cdn.github.com/images/icons/emoji/unicode/2757.png">❗️</g-emoji> operator can be a fun, healthy way to write code. So are you practicing safe yolo?</p>
+      <p>What is Swift's Yolo<g-emoji alias="exclamation" fallback-src="https://assets-cdn.github.com/images/icons/emoji/unicode/2757.png">❗️</g-emoji> operator? Simply put, this is the bang <g-emoji alias="exclamation" fallback-src="https://assets-cdn.github.com/images/icons/emoji/unicode/2757.png">❗️</g-emoji> operator used to force-unwrap optionals. We've all done it -- don't lie. When practicing safe yolo, the Yolo<g-emoji alias="exclamation" fallback-src="https://assets-cdn.github.com/images/icons/emoji/unicode/2757.png">❗️</g-emoji> operator can be a fun, healthy way to write code. So are you practicing safe yolo?</p>
 
 <h1>
 <a id="why-yolo" class="anchor" href="#why-yolo" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Why "Yolo"?</h1>
@@ -147,7 +147,7 @@
 <h2>
 <a id="type-casting" class="anchor" href="#type-casting" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Type Casting</h2>
 
-<div class="highlight highlight-source-swift"><pre><span class="pl-k">let</span> superObject <span class="pl-k">=</span> (givenObject <span class="pl-k">as!</span> MyObject)</pre></div>
+<div class="highlight highlight-source-swift"><pre><span class="pl-k">let</span> superObject <span class="pl-k">=</span> (givenObject <span class="pl-k">as</span>❗️ MyObject)</pre></div>
 
 <p><g-emoji alias="warning" fallback-src="https://assets-cdn.github.com/images/icons/emoji/unicode/26a0.png">⚠️</g-emoji> This pattern could qualify as an expected cautious-yolo and could be a programmer error depending on your requirements. If your object doesn't get cast correctly, we want it to crash. If you're already at this point, it will likely require much more code to completely obviate the yolo altogether.</p>
 
@@ -182,9 +182,7 @@
 
 <div class="highlight highlight-source-swift"><pre><span class="pl-k">let</span> resource <span class="pl-k">=</span> <span class="pl-k">try</span>❗️ unpackCriticalBundledResourceWithName(resourceName)</pre></div>
 
-<ul>
-<li>unless you seriously know what you're doing and have written a lot of documentation around this code. judicious use of emoji is recommended with this type of documentation</li>
-</ul>
+<p>* unless you seriously know what you're doing and have written a lot of documentation around this code. judicious use of emoji is recommended with this type of documentation</p>
 
       <footer class="site-footer">
         <span class="site-footer-owner"><a href="https://github.com/larsacus/swiftyolo.com">Swift&#39;s Yolo❗️ Operator</a> is maintained by <a href="https://github.com/larsacus">larsacus</a>.</span>
